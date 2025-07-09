@@ -1,7 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 const images = [
   "/images/blog/post-01.jpg",
@@ -11,9 +11,6 @@ const images = [
   "/images/blog/blog-02.jpg",
   "/images/blog/blog-03.jpg"
 ];
-
-
-import { useState } from "react";
 
 const Carousel = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
