@@ -14,7 +14,7 @@ import Carousel from "@/components/Carousel";
 
 export const metadata: Metadata = {
   title: "Twin Pro Solutions ",
-  description: "Twins Pro Solutions - Demolition, Kitchen, Bathroom, and Flooring Experts in Florida. Transforming Spaces with Quality and Trust.",
+  description: "Twins Pro Solutions - Demolition, Kitchen, Bathroom, and Flooring Experts in Florida. Transforming Spaces with Quality and Trust..",
   // other metadata
 };
 
