@@ -44,7 +44,7 @@ const AboutSectionTwo = () => {
               </div>
               <div className="mb-1">
                 <h3 className="mb-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl xl:text-2xl">
-                  Quality Materials & Professionals
+                  Quality Materials and Professionals
                 </h3>
                 <p className="text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed">
                   We work only with high-quality materials and an experienced team, ensuring durability, beauty, and safety in every project we deliver.

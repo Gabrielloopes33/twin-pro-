@@ -16,7 +16,7 @@ const Hero = () => {
                   Transform Your Florida Space: Premium Remodeling, Start to Finish.
                 </h1>
                 <p className="mb-12 text-base leading-relaxed! text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                  Experts in Demolition, Kitchens, Bathrooms, and Flooring. Quality and Trust You Can See..
+                  Experts in Demolition, Kitchens, Bathrooms, and Flooring. Quality and Trust You Can See.
                 </p>
                 <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                   <Link
