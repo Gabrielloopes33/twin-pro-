@@ -25,16 +25,8 @@ export default function RootLayout({
 
       <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
         {/* Animated Grid Pattern Background Global */}
-        <div className="fixed inset-0 z-[-1] w-screen h-screen pointer-events-none">
-          {/* eslint-disable-next-line @typescript-eslint/no-var-requires */}
-          {typeof window !== "undefined" &&
-            (React.createElement(require("@/components/magicui/animated-grid-pattern").AnimatedGridPattern, {
-              className: "w-full h-full min-w-screen min-h-screen text-primary/20 dark:text-primary/10",
-              width: 80,
-              height: 80,
-              numSquares: 400
-            }))}
-        </div>
+        {/* Animated Grid Pattern Background Global */}
+        {/* To avoid build errors, use dynamic import or move this to a client component if animation is needed */}
         <Providers>
           {/* <Header /> */}
           {children}
