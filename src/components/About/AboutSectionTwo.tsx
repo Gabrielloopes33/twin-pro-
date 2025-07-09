@@ -39,7 +39,7 @@ const AboutSectionTwo = () => {
                   Personalized Service
                 </h3>
                 <p className="text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed">
-                  We value clear communication and close follow-up on every project, listening to our clients' needs and exceeding expectations in every detail.
+                  We value clear communication and close follow-up on every project, listening to our clients&apos; needs and exceeding expectations in every detail.
                 </p>
               </div>
               <div className="mb-1">
