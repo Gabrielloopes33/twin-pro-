@@ -23,7 +23,7 @@ export default function RootLayout({
       */}
       <head />
 
-      <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
+      <body className={`bg-[#FCFCFC] ${inter.className}`}>
         {/* Animated Grid Pattern Background Global */}
         {/* Animated Grid Pattern Background Global */}
         {/* To avoid build errors, use dynamic import or move this to a client component if animation is needed */}
