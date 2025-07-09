@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import ThemeToggler from "./ThemeToggler";
+// import ThemeToggler from "./ThemeToggler"; // dark mode removed
 import menuData from "./menuData";
 
 const Header = () => {
@@ -43,7 +43,7 @@ const Header = () => {
       <header
         className={`header top-0 left-0 z-40 flex w-full items-center ${
           sticky
-            ? "dark:bg-gray-dark dark:shadow-sticky-dark shadow-sticky fixed z-9999 bg-white/80 backdrop-blur-xs transition"
+            ? "shadow-sticky fixed z-9999 bg-white/80 backdrop-blur-xs transition"
             : "absolute bg-transparent"
         }`}
       >
@@ -57,18 +57,11 @@ const Header = () => {
                 } `}
               >
                 <Image
-                  src="/images/logo/logo-2.svg"
-                  alt="logo"
-                  width={140}
-                  height={30}
-                  className="w-full dark:hidden"
-                />
-                <Image
                   src="/images/logo/logo.svg"
                   alt="logo"
                   width={140}
                   height={30}
-                  className="hidden w-full dark:block"
+                  className="w-full"
                 />
               </Link>
             </div>
@@ -81,24 +74,24 @@ const Header = () => {
                   className="ring-primary absolute top-1/2 right-4 block translate-y-[-50%] rounded-lg px-3 py-[6px] focus:ring-2 lg:hidden"
                 >
                   <span
-                    className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
+                  className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 ${
                       navbarOpen ? "top-[7px] rotate-45" : " "
                     }`}
                   />
                   <span
-                    className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
+                  className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 ${
                       navbarOpen ? "opacity-0" : " "
                     }`}
                   />
                   <span
-                    className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
+                  className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 ${
                       navbarOpen ? "top-[-8px] -rotate-45" : " "
                     }`}
                   />
                 </button>
                 <nav
                   id="navbarCollapse"
-                  className={`navbar border-body-color/50 dark:border-body-color/20 dark:bg-dark absolute right-0 z-30 w-[250px] rounded border-[.5px] bg-white px-6 py-4 duration-300 lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
+                  className={`navbar border-body-color/50 absolute right-0 z-30 w-[250px] rounded border-[.5px] bg-white px-6 py-4 duration-300 lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
                     navbarOpen
                       ? "visibility top-full opacity-100"
                       : "invisible top-[120%] opacity-0"
@@ -112,8 +105,8 @@ const Header = () => {
                             href={menuItem.path}
                             className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
                               usePathName === menuItem.path
-                                ? "text-primary dark:text-white"
-                                : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
+                                ? "text-primary"
+                                : "text-dark hover:text-primary"
                             }`}
                           >
                             {menuItem.title}
@@ -122,7 +115,7 @@ const Header = () => {
                           <>
                             <p
                               onClick={() => handleSubmenu(index)}
-                              className="text-dark group-hover:text-primary flex cursor-pointer items-center justify-between py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 dark:text-white/70 dark:group-hover:text-white"
+                              className="text-dark group-hover:text-primary flex cursor-pointer items-center justify-between py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6"
                             >
                               {menuItem.title}
                               <span className="pl-3">
@@ -137,7 +130,7 @@ const Header = () => {
                               </span>
                             </p>
                             <div
-                              className={`submenu dark:bg-dark relative top-full left-0 rounded-sm bg-white transition-[top] duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:w-[250px] lg:p-4 lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full ${
+                              className={`submenu relative top-full left-0 rounded-sm bg-white transition-[top] duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:w-[250px] lg:p-4 lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full ${
                                 openIndex === index ? "block" : "hidden"
                               }`}
                             >
@@ -145,7 +138,7 @@ const Header = () => {
                                 <Link
                                   href={submenuItem.path}
                                   key={index}
-                                  className="text-dark hover:text-primary block rounded-sm py-2.5 text-sm lg:px-3 dark:text-white/70 dark:hover:text-white"
+                                  className="text-dark hover:text-primary block rounded-sm py-2.5 text-sm lg:px-3"
                                 >
                                   {submenuItem.title}
                                 </Link>
@@ -161,7 +154,7 @@ const Header = () => {
               <div className="flex items-center justify-end pr-16 lg:pr-0">
                 <Link
                   href="/signin"
-                  className="text-dark hidden px-7 py-3 text-base font-medium hover:opacity-70 md:block dark:text-white"
+                  className="text-dark hidden px-7 py-3 text-base font-medium hover:opacity-70 md:block"
                 >
                   Sign In
                 </Link>
@@ -171,9 +164,7 @@ const Header = () => {
                 >
                   Sign Up
                 </Link>
-                <div>
-                  <ThemeToggler />
-                </div>
+                {/* ThemeToggler removido */}
               </div>
             </div>
           </div>

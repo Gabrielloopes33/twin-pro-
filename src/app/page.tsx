@@ -13,8 +13,8 @@ import { Metadata } from "next";
 import Carousel from "@/components/Carousel";
 
 export const metadata: Metadata = {
-  title: "Free Next.js Template for Startup and SaaS",
-  description: "This is Home for Startup Nextjs Template",
+  title: "Twin Pro Solutions ",
+  description: "Twins Pro Solutions - Demolition, Kitchen, Bathroom, and Flooring Experts in Florida. Transforming Spaces with Quality and Trust.",
   // other metadata
 };
 
