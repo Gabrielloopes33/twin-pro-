@@ -33,7 +33,7 @@ const Hero = () => {
                 </div>
                 <div className="flex flex-col items-center justify-center">
                   <div className="w-full flex justify-center">
-                    <Link href="https://nextjstemplates.com/templates/saas-starter-startup">
+                    <Link href="https://wa.me/12393189978">
                       <BlurText
                         text="🔥 Get a Free Estimate"
                         delay={600}
