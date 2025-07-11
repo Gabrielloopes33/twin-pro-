@@ -1,11 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Performance optimizations
-  experimental: {
-    optimizeCss: true,
-    optimizePackageImports: ['framer-motion'],
-  },
-  
   // Image optimizations
   images: {
     remotePatterns: [
@@ -23,6 +17,10 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
+  
+  // Netlify compatibility
+  trailingSlash: false,
+  output: 'standalone',
   
   // Bundle optimization
   webpack: (config, { dev, isServer }) => {
