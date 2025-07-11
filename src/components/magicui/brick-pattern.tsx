@@ -15,17 +15,27 @@ export default function BrickPattern({
 }: BrickPatternProps) {
   const brickWidth = 60;
   const brickHeight = 30;
-  const patternId = React.useId();
   
   return (
-    <div className={`fixed inset-0 -z-10 overflow-hidden ${className}`}>
+    <div 
+      className={`fixed inset-0 w-full h-full pointer-events-none ${className}`}
+      style={{ zIndex: -1 }}
+    >
       <svg
-        className="absolute inset-0 h-full w-full"
+        className="absolute inset-0 w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
+        style={{ 
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: -1
+        }}
       >
         <defs>
           <pattern
-            id={`brick-${patternId}`}
+            id="brick-pattern"
             x="0"
             y="0"
             width={brickWidth * 2}
@@ -39,7 +49,7 @@ export default function BrickPattern({
               width={brickWidth - 4}
               height={brickHeight - 4}
               fill="none"
-              stroke="currentColor"
+              stroke="#1CA39E"
               strokeWidth="1"
               opacity={opacity}
               rx="2"
@@ -50,7 +60,7 @@ export default function BrickPattern({
               width={brickWidth - 4}
               height={brickHeight - 4}
               fill="none"
-              stroke="currentColor"
+              stroke="#1CA39E"
               strokeWidth="1"
               opacity={opacity}
               rx="2"
@@ -63,7 +73,7 @@ export default function BrickPattern({
               width={brickWidth - 4}
               height={brickHeight - 4}
               fill="none"
-              stroke="currentColor"
+              stroke="#1CA39E"
               strokeWidth="1"
               opacity={opacity}
               rx="2"
@@ -74,7 +84,7 @@ export default function BrickPattern({
               width={brickWidth - 4}
               height={brickHeight - 4}
               fill="none"
-              stroke="currentColor"
+              stroke="#1CA39E"
               strokeWidth="1"
               opacity={opacity}
               rx="2"
@@ -85,16 +95,16 @@ export default function BrickPattern({
               width={brickWidth - 4}
               height={brickHeight - 4}
               fill="none"
-              stroke="currentColor"
+              stroke="#1CA39E"
               strokeWidth="1"
               opacity={opacity}
               rx="2"
             />
           </pattern>
           
-          {/* Mortar lines pattern */}
+          {/* Mortar dots pattern */}
           <pattern
-            id={`mortar-${patternId}`}
+            id="mortar-pattern"
             x="0"
             y="0"
             width="20"
@@ -105,49 +115,47 @@ export default function BrickPattern({
               cx="10"
               cy="10"
               r="0.5"
-              fill="currentColor"
+              fill="#1CA39E"
               opacity={opacity * 2}
             />
           </pattern>
         </defs>
         
-        {/* Brick pattern */}
+        {/* Brick pattern background */}
         <rect
           width="100%"
           height="100%"
-          fill={`url(#brick-${patternId})`}
-          className="text-primary/30"
+          fill="url(#brick-pattern)"
         />
         
-        {/* Mortar texture */}
+        {/* Mortar texture overlay */}
         <rect
           width="100%"
           height="100%"
-          fill={`url(#mortar-${patternId})`}
-          className="text-primary/20"
+          fill="url(#mortar-pattern)"
         />
         
         {animate && (
-          <g className="text-primary/10">
-            {/* Construction dust particles */}
-            {Array.from({ length: 12 }, (_, i) => (
+          <g>
+            {/* Animated construction dust particles */}
+            {Array.from({ length: 8 }, (_, i) => (
               <circle
                 key={i}
-                cx={50 + i * 100}
+                cx={50 + i * 150}
                 cy={50 + (i % 3) * 200}
                 r="1"
-                fill="currentColor"
-                opacity={opacity * 4}
+                fill="#1CA39E"
+                opacity={opacity * 3}
               >
                 <animate
                   attributeName="cy"
-                  values={`${50 + (i % 3) * 200}; ${100 + (i % 3) * 200}; ${50 + (i % 3) * 200}`}
+                  values={`${50 + (i % 3) * 200};${100 + (i % 3) * 200};${50 + (i % 3) * 200}`}
                   dur={`${10 + i * 0.5}s`}
                   repeatCount="indefinite"
                 />
                 <animate
                   attributeName="opacity"
-                  values={`0; ${opacity * 4}; 0`}
+                  values={`0;${opacity * 3};0`}
                   dur={`${8 + i * 0.3}s`}
                   repeatCount="indefinite"
                 />
