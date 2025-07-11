@@ -7,20 +7,17 @@ const AboutSectionTwo = () => {
         <div className="-mx-4 flex flex-wrap items-center">
           <div className="w-full px-4 lg:w-1/2">
             <div
-              className="relative mx-auto mb-12 aspect-25/24 max-w-[500px] text-center lg:m-0"
+              className="relative mx-auto mb-12 aspect-25/24 max-w-[700px] text-center lg:m-0"
+              style={{ minHeight: '500px' }}
               data-wow-delay=".15s"
             >
               <Image
-                src="/images/about/about-image-2.svg"
-                alt="about image"
+                src="/images/about/worker-3d 2.svg"
+                alt="worker 3D"
                 fill
-                className="drop-shadow-three "
-              />
-              <Image
-                src="/images/about/about-image-2-dark.svg"
-                alt="about image"
-                fill
-                className="hidden drop-shadow-three "
+                className="drop-shadow-three object-contain"
+                sizes="(max-width: 1024px) 100vw, 700px"
+                priority
               />
             </div>
           </div>

@@ -11,6 +11,7 @@ import Testimonials from "@/components/Testimonials";
 import Video from "@/components/Video";
 import { Metadata } from "next";
 import Carousel from "@/components/Carousel";
+import BrickPattern from "@/components/magicui/brick-pattern";
 
 export const metadata: Metadata = {
   title: "Twin Pro Solutions ",
@@ -21,6 +22,9 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
+      {/* Construction-themed background */}
+      <BrickPattern opacity={0.04} animate={true} />
+      
       <ScrollUp />
       <Hero />
       <Features />

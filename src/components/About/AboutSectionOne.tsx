@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
 import SectionTitle from "../Common/SectionTitle";
+import { useState } from "react";
 
 const checkIcon = (
   <svg width="16" height="13" viewBox="0 0 16 13" className="fill-current">
@@ -16,6 +18,8 @@ const AboutSectionOne = () => {
       {text}
     </p>
   );
+
+  const [imgError, setImgError] = useState(false);
 
   return (
     <section id="about" className="pt-16 md:pt-20 lg:pt-28">
@@ -43,27 +47,27 @@ const AboutSectionOne = () => {
                   <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
                     <List text="Transparent processes" />
                     <List text="Skilled professionals" />
-                    
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="w-full px-4 lg:w-1/2">
-              <div className="relative mx-auto aspect-25/24 max-w-[500px] lg:mr-0">
-                <Image
-                  src="/images/about/about-image.svg"
-                  alt="about-image"
-                  fill
-                  className="mx-auto max-w-full drop-shadow-three lg:mr-0"
+            <div className="w-full px-4 lg:w-1/2 flex justify-center items-center">
+              {!imgError ? (
+                <img
+                  src="/images/about/worker-3d.svg"
+                  alt="Trabalhador 3D"
+                  className="w-full h-auto max-w-none"
+                  onError={() => setImgError(true)}
                 />
-                <Image
-                  src="/images/about/about-image-dark.svg"
-                  alt="about-image"
-                  fill
-                  className="mx-auto hidden max-w-full drop-shadow-three lg:mr-0"
+              ) : (
+                <img
+                  src="/images/about/worker-3d.png"
+                  alt="Trabalhador 3D"
+                  className="w-full h-auto max-w-none"
+                  onError={null}
                 />
-              </div>
+              )}
             </div>
           </div>
         </div>
