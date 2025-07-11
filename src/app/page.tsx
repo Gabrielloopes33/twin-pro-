@@ -23,8 +23,8 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      {/* Construction-themed background - using simple version for better compatibility */}
-      <SimpleBrickBackground opacity={0.06} />
+      {/* Construction-themed background - optimized version */}
+      <BrickPattern opacity={0.06} animate={false} />
       
       <ScrollUp />
       <Hero />

@@ -127,20 +127,14 @@ layer(base);
   }
 }
 
-/* Marquee animations */
+/* Marquee animations - optimized */
 @keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
   to {
     transform: translateX(calc(-100% - var(--gap)));
   }
 }
 
 @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
-  }
   to {
     transform: translateY(calc(-100% - var(--gap)));
   }
@@ -148,8 +142,10 @@ layer(base);
 
 .animate-marquee {
   animation: marquee var(--duration) linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee-vertical {
   animation: marquee-vertical var(--duration) linear infinite;
+  will-change: transform;
 }

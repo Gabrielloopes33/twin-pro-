@@ -2,8 +2,9 @@ import SectionTitle from "../Common/SectionTitle";
 import SingleFeature from "./SingleFeature";
 import featuresData from "./featuresData";
 import AnimatedContent from "../Common/AnimatedContent";
+import { memo } from "react";
 
-const Features = () => {
+const Features = memo(function Features() {
   return (
     <>
       <section id="features" className="py-16 md:py-20 lg:py-28 relative overflow-hidden">
@@ -23,10 +24,10 @@ const Features = () => {
               <AnimatedContent 
                 key={feature.id} 
                 animation="slide" 
-                delay={200 + (index * 150)}
+                delay={200 + (index * 100)} // Reduced delay
                 className="h-full"
               >
-                <div className="group h-full transition-all duration-300 hover:scale-105 cursor-pointer">
+                <div className="group h-full transition-all duration-300 hover:scale-105 cursor-pointer will-change-transform">
                   <SingleFeature feature={feature} />
                 </div>
               </AnimatedContent>
@@ -34,13 +35,12 @@ const Features = () => {
           </div>
         </div>
 
-        {/* Elementos decorativos animados */}
-        <div className="absolute top-10 left-10 w-20 h-20 bg-primary/5 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-16 h-16 bg-primary/10 rounded-full animate-bounce" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-5 w-12 h-12 bg-primary/5 rounded-full animate-ping" style={{ animationDelay: '2s' }}></div>
+        {/* Reduced decorative elements - only 2 instead of 3 */}
+        <div className="absolute top-10 left-10 w-16 h-16 bg-primary/5 rounded-full animate-pulse opacity-50"></div>
+        <div className="absolute bottom-10 right-10 w-12 h-12 bg-primary/5 rounded-full animate-pulse opacity-50" style={{ animationDelay: '2s' }}></div>
       </section>
     </>
   );
-};
+});
 
 export default Features;

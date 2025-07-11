@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 
 interface BrickPatternProps {
   className?: string;
@@ -8,13 +8,13 @@ interface BrickPatternProps {
   animate?: boolean;
 }
 
-export default function BrickPattern({ 
+const BrickPattern = memo(function BrickPattern({ 
   className = "", 
   opacity = 0.02,
-  animate = true 
+  animate = false // Disabled by default for better performance
 }: BrickPatternProps) {
-  const brickWidth = 60;
-  const brickHeight = 30;
+  const brickWidth = 80; // Increased for fewer elements
+  const brickHeight = 40; // Increased for fewer elements
   
   return (
     <div 
@@ -35,128 +35,92 @@ export default function BrickPattern({
       >
         <defs>
           <pattern
-            id="brick-pattern"
+            id="brick-pattern-optimized"
             x="0"
             y="0"
             width={brickWidth * 2}
             height={brickHeight * 2}
             patternUnits="userSpaceOnUse"
           >
-            {/* First row */}
+            {/* Optimized brick pattern - fewer rectangles */}
             <rect
-              x="2"
-              y="2"
-              width={brickWidth - 4}
-              height={brickHeight - 4}
+              x="3"
+              y="3"
+              width={brickWidth - 6}
+              height={brickHeight - 6}
               fill="none"
               stroke="#1CA39E"
-              strokeWidth="1"
+              strokeWidth="0.8"
               opacity={opacity}
-              rx="2"
+              rx="3"
             />
             <rect
-              x={brickWidth + 2}
-              y="2"
-              width={brickWidth - 4}
-              height={brickHeight - 4}
+              x={brickWidth + 3}
+              y="3"
+              width={brickWidth - 6}
+              height={brickHeight - 6}
               fill="none"
               stroke="#1CA39E"
-              strokeWidth="1"
+              strokeWidth="0.8"
               opacity={opacity}
-              rx="2"
+              rx="3"
             />
             
-            {/* Second row (offset) */}
+            {/* Second row (offset) - reduced elements */}
             <rect
-              x={-brickWidth/2 + 2}
-              y={brickHeight + 2}
-              width={brickWidth - 4}
-              height={brickHeight - 4}
+              x={-brickWidth/2 + 3}
+              y={brickHeight + 3}
+              width={brickWidth - 6}
+              height={brickHeight - 6}
               fill="none"
               stroke="#1CA39E"
-              strokeWidth="1"
+              strokeWidth="0.8"
               opacity={opacity}
-              rx="2"
+              rx="3"
             />
             <rect
-              x={brickWidth/2 + 2}
-              y={brickHeight + 2}
-              width={brickWidth - 4}
-              height={brickHeight - 4}
+              x={brickWidth * 1.5 + 3}
+              y={brickHeight + 3}
+              width={brickWidth - 6}
+              height={brickHeight - 6}
               fill="none"
               stroke="#1CA39E"
-              strokeWidth="1"
+              strokeWidth="0.8"
               opacity={opacity}
-              rx="2"
-            />
-            <rect
-              x={brickWidth * 1.5 + 2}
-              y={brickHeight + 2}
-              width={brickWidth - 4}
-              height={brickHeight - 4}
-              fill="none"
-              stroke="#1CA39E"
-              strokeWidth="1"
-              opacity={opacity}
-              rx="2"
-            />
-          </pattern>
-          
-          {/* Mortar dots pattern */}
-          <pattern
-            id="mortar-pattern"
-            x="0"
-            y="0"
-            width="20"
-            height="20"
-            patternUnits="userSpaceOnUse"
-          >
-            <circle
-              cx="10"
-              cy="10"
-              r="0.5"
-              fill="#1CA39E"
-              opacity={opacity * 2}
+              rx="3"
             />
           </pattern>
         </defs>
         
-        {/* Brick pattern background */}
+        {/* Single brick pattern background */}
         <rect
           width="100%"
           height="100%"
-          fill="url(#brick-pattern)"
+          fill="url(#brick-pattern-optimized)"
         />
         
-        {/* Mortar texture overlay */}
-        <rect
-          width="100%"
-          height="100%"
-          fill="url(#mortar-pattern)"
-        />
-        
+        {/* Reduced animated particles for better performance */}
         {animate && (
           <g>
-            {/* Animated construction dust particles */}
-            {Array.from({ length: 8 }, (_, i) => (
+            {Array.from({ length: 4 }, (_, i) => (
               <circle
                 key={i}
-                cx={50 + i * 150}
-                cy={50 + (i % 3) * 200}
-                r="1"
+                cx={100 + i * 200}
+                cy={100 + (i % 2) * 300}
+                r="1.5"
                 fill="#1CA39E"
-                opacity={opacity * 3}
+                opacity={opacity * 2}
               >
                 <animate
                   attributeName="cy"
-                  values={`${50 + (i % 3) * 200};${100 + (i % 3) * 200};${50 + (i % 3) * 200}`}
-                  dur={`${10 + i * 0.5}s`}
+                  values={`${100 + (i % 2) * 300};${150 + (i % 2) * 300};${100 + (i % 2) * 300}`}
+                  dur={`${15 + i * 2}s`}
                   repeatCount="indefinite"
                 />
                 <animate
                   attributeName="opacity"
-                  values={`0;${opacity * 3};0`}
-                  dur={`${8 + i * 0.3}s`}
+                  values={`0;${opacity * 2};0`}
+                  dur={`${12 + i}s`}
                   repeatCount="indefinite"
                 />
               </circle>
@@ -166,4 +130,6 @@ export default function BrickPattern({
       </svg>
     </div>
   );
-}
+});
+
+export default BrickPattern;

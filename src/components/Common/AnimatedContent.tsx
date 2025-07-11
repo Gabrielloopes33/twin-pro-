@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useEffect, useRef, useState, useCallback, memo } from 'react';
 
 interface AnimatedContentProps {
   children: ReactNode;
@@ -11,32 +11,37 @@ interface AnimatedContentProps {
   className?: string;
 }
 
-const AnimatedContent: React.FC<AnimatedContentProps> = ({
+const AnimatedContent: React.FC<AnimatedContentProps> = memo(function AnimatedContent({
   children,
   show = true,
   animation = 'fade',
   duration = 500,
   delay = 0,
   className = '',
-}) => {
+}) {
   const [isVisible, setIsVisible] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            setIsVisible(true);
-          }, delay);
-        }
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1,
+  const handleIntersection = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      const [entry] = entries;
+      if (entry.isIntersecting && !hasAnimated) {
+        setTimeout(() => {
+          setIsVisible(true);
+          setHasAnimated(true);
+        }, delay);
       }
-    );
+    },
+    [delay, hasAnimated]
+  );
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleIntersection, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1,
+    });
 
     if (ref.current) {
       observer.observe(ref.current);
@@ -47,7 +52,7 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
         observer.unobserve(ref.current);
       }
     };
-  }, [delay]);
+  }, [handleIntersection]);
 
   const animationClass = () => {
     if (!isVisible) return 'opacity-0';
@@ -64,6 +69,8 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
   const getStyle = () => {
     const baseStyle = {
       transitionDuration: `${duration}ms`,
+      transitionProperty: 'opacity, transform',
+      willChange: isVisible ? 'auto' : 'opacity, transform',
     };
 
     if (!isVisible) {
@@ -87,6 +94,6 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
       {children}
     </div>
   );
-};
+});
 
 export default AnimatedContent;
