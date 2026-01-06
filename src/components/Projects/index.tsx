@@ -127,8 +127,11 @@ const Projects = () => {
                             src={media.url}
                             alt={project.title}
                             fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             className="object-cover cursor-pointer transition-transform duration-300 group-hover:scale-105"
                             onClick={() => setSelectedMedia({ url: media.url, type: "image" })}
+                            unoptimized
+                          />
                           />
                           {project.media.length > 4 && index === 3 && (
                             <div className="absolute inset-0 bg-black/60 flex items-center justify-center cursor-pointer"
@@ -207,6 +210,7 @@ const Projects = () => {
                 width={1200}
                 height={800}
                 className="w-full h-auto rounded-lg"
+                unoptimized
               />
             ) : (
               <video
