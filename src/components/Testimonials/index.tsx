@@ -1,50 +1,140 @@
+'use client';
 import { Testimonial } from "@/types/testimonial";
 import SectionTitle from "../Common/SectionTitle";
 import SingleTestimonial from "./SingleTestimonial";
+import { useEffect, useRef } from "react";
 
 const testimonialData: Testimonial[] = [
   {
     id: 1,
-    name: "Musharof Chy",
-    designation: "Founder @TailGrids",
+    name: "Rafael Souza",
+    designation: "Google Review",
     content:
-      "The team at Twins Pro Solutions transformed our outdated kitchen into a modern masterpiece. Their professionalism and attention to detail were outstanding. Highly recommended",
+      "The team at Twins Pro Solutions transformed our outdated kitchen into a modern masterpiece. Their professionalism and attention to detail were outstanding. Highly recommended!",
     image: "/images/testimonials/auth-01.png",
     star: 5,
+    googleLink: "https://maps.app.goo.gl/fynC9p1hMZSPYDZaA?g_st=iw",
   },
   {
     id: 2,
-    name: "Devid Weilium",
-    designation: "Founder @UIdeck",
+    name: "Maria Santos",
+    designation: "Google Review",
     content:
       "We needed a complex demolition job done on a tight schedule. Twins Pro came through for us with incredible efficiency and safety. We couldn't be happier with the result.",
     image: "/images/testimonials/auth-02.png",
     star: 5,
+    googleLink: "https://maps.app.goo.gl/EypiMsep4aNf64tb8?g_st=iw",
   },
   {
     id: 3,
-    name: "Lethium Frenci",
-    designation: "Founder @Lineicons",
+    name: "John Anderson",
+    designation: "Google Review",
     content:
       "From the initial quote to the final tile laid, the entire flooring project was smooth and stress-free. The quality of their work speaks for itself.",
     image: "/images/testimonials/auth-03.png",
     star: 5,
+    googleLink: "https://maps.app.goo.gl/SCivpsYKaJYgQ6Wt9?g_st=iw",
+  },
+  {
+    id: 4,
+    name: "Patricia Lima",
+    designation: "Google Review",
+    content:
+      "Exceptional bathroom remodeling service! The team was professional, punctual, and delivered exactly what they promised. Our bathroom looks amazing!",
+    image: "/images/testimonials/auth-01.png",
+    star: 5,
+    googleLink: "https://maps.app.goo.gl/EaDSvjwuziZrWnMZ8?g_st=iw",
+  },
+  {
+    id: 5,
+    name: "Carlos Rodriguez",
+    designation: "Google Review",
+    content:
+      "Outstanding junk removal service! Fast, efficient, and very affordable. They handled everything with care and left the place spotless.",
+    image: "/images/testimonials/auth-02.png",
+    star: 5,
+    googleLink: "https://maps.app.goo.gl/YKSnJUqmzUwuYC229?g_st=iw",
+  },
+  {
+    id: 6,
+    name: "Jennifer White",
+    designation: "Google Review",
+    content:
+      "The flooring installation was impeccable! The attention to detail and craftsmanship is top-notch. Highly recommend Twins Pro Solutions!",
+    image: "/images/testimonials/auth-03.png",
+    star: 5,
+    googleLink: "https://maps.app.goo.gl/4XbzL4yq4UL4E78W9?g_st=iw",
+  },
+  {
+    id: 7,
+    name: "Michael Brown",
+    designation: "Google Review",
+    content:
+      "Professional, reliable, and excellent quality work. They transformed our entire space and exceeded our expectations. Will definitely hire again!",
+    image: "/images/testimonials/auth-01.png",
+    star: 5,
+    googleLink: "https://maps.app.goo.gl/ZeffPxPfqU7Soo3f6?g_st=iw",
   },
 ];
 
 const Testimonials = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    let animationFrameId: number;
+    let scrollPosition = 0;
+    const scrollSpeed = 0.5; // pixels per frame - adjust for speed
+
+    const scroll = () => {
+      if (!scrollContainer) return;
+      
+      scrollPosition += scrollSpeed;
+      
+      // Reset scroll when reaching the middle (since we duplicated content)
+      if (scrollPosition >= scrollContainer.scrollWidth / 2) {
+        scrollPosition = 0;
+      }
+      
+      scrollContainer.scrollLeft = scrollPosition;
+      animationFrameId = requestAnimationFrame(scroll);
+    };
+
+    animationFrameId = requestAnimationFrame(scroll);
+
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }, []);
+
+  // Duplicate testimonials for infinite scroll effect
+  const duplicatedTestimonials = [...testimonialData, ...testimonialData];
+
   return (
-    <section className=" bg-gray-light relative z-10 py-16 md:py-20 lg:py-28">
+    <section className="bg-gray-light relative z-10 py-16 md:py-20 lg:py-28">
       <div className="container">
         <SectionTitle
           title="What Our Clients Says"
-          paragraph="Clients are saying great things about us."
+          paragraph="Real reviews from our satisfied customers on Google."
           center
         />
 
-        <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-          {testimonialData.map((testimonial) => (
-            <SingleTestimonial key={testimonial.id} testimonial={testimonial} />
+        <div 
+          ref={scrollRef}
+          className="flex gap-6 overflow-hidden pb-4"
+          style={{ scrollBehavior: 'auto' }}
+        >
+          {duplicatedTestimonials.map((testimonial, index) => (
+            <div 
+              key={`${testimonial.id}-${index}`} 
+              className="flex-shrink-0 w-[350px] sm:w-[400px]"
+            >
+              <SingleTestimonial testimonial={testimonial} />
+            </div>
           ))}
         </div>
       </div>

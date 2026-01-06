@@ -46,6 +46,36 @@ const featuresData: Feature[] = [
     paragraph:
       "Flawless installation of hardwood, tile, vinyl, and more. The perfect foundation for your space starts here.",
   },
+  {
+    id: 4,
+    icon: (
+      <svg width="40" height="40" viewBox="0 0 40 40" className="fill-current">
+        <path
+          opacity="0.5"
+          d="M32 8H8C5.8 8 4 9.8 4 12V32C4 34.2 5.8 36 8 36H32C34.2 36 36 34.2 36 32V12C36 9.8 34.2 8 32 8Z"
+        />
+        <path d="M30 4H10C9.4 4 9 4.4 9 5V7C9 7.6 9.4 8 10 8H30C30.6 8 31 7.6 31 7V5C31 4.4 30.6 4 30 4ZM14 16C14 15.4 14.4 15 15 15H25C25.6 15 26 15.4 26 16C26 16.6 25.6 17 25 17H15C14.4 17 14 16.6 14 16ZM14 22C14 21.4 14.4 21 15 21H25C25.6 21 26 21.4 26 22C26 22.6 25.6 23 25 23H15C14.4 23 14 22.6 14 22ZM14 28C14 27.4 14.4 27 15 27H20C20.6 27 21 27.4 21 28C21 28.6 20.6 29 20 29H15C14.4 29 14 28.6 14 28Z" />
+      </svg>
+    ),
+    title: "Junk Removal",
+    paragraph:
+      "Fast and reliable junk removal service. We handle everything from furniture to construction debris, making your cleanup hassle-free.",
+  },
+  {
+    id: 5,
+    icon: (
+      <svg width="40" height="40" viewBox="0 0 40 40" className="fill-current">
+        <path
+          opacity="0.5"
+          d="M35 10H5C3.3 10 2 11.3 2 13V32C2 33.7 3.3 35 5 35H35C36.7 35 38 33.7 38 32V13C38 11.3 36.7 10 35 10Z"
+        />
+        <path d="M8 10V8C8 6.9 8.9 6 10 6H30C31.1 6 32 6.9 32 8V10H8ZM4 35V38C4 39.1 4.9 40 6 40H8C9.1 40 10 39.1 10 38V35H4ZM30 35V38C30 39.1 30.9 40 32 40H34C35.1 40 36 39.1 36 38V35H30ZM13 20H27C27.6 20 28 20.4 28 21C28 21.6 27.6 22 27 22H13C12.4 22 12 21.6 12 21C12 20.4 12.4 20 13 20Z" />
+      </svg>
+    ),
+    title: "Dump Trailer",
+    paragraph:
+      "Convenient dump trailer rental for your project needs. Perfect for DIY cleanups, landscaping, or construction waste disposal.",
+  },
   
   
 ];

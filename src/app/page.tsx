@@ -11,6 +11,7 @@ import Testimonials from "@/components/Testimonials";
 import Video from "@/components/Video";
 import { Metadata } from "next";
 import Carousel from "@/components/Carousel";
+import Projects from "@/components/Projects";
 import BrickPattern from "@/components/magicui/brick-pattern";
 import SimpleBrickBackground from "@/components/magicui/simple-brick-background";
 
@@ -24,17 +25,16 @@ export default function Home() {
   return (
     <>
       {/* Construction-themed background - optimized version */}
-      <BrickPattern opacity={0.06} animate={false} />
+      <BrickPattern opacity={0.09} animate={false} />
       
       <ScrollUp />
       <Hero />
       <Features />
-     
-      <Brands />
-      <AboutSectionOne />
-      <AboutSectionTwo />
-      <Carousel />
       <Testimonials />
+      <AboutSectionOne />
+      <Brands />
+      <AboutSectionTwo />
+      <Projects />
       
       
       <Contact />
