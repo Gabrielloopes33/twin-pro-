@@ -10,79 +10,58 @@ const projectsData: Project[] = [
   // Junk Removal Projects
   {
     id: 1,
-    title: "Residential Cleanout",
+    title: "Professional Junk Removal Service",
     category: "junk-removal",
     media: [
-      { type: "image", url: "/images/projects/junk-removal-1.jpg" },
-      { type: "image", url: "/images/projects/junk-removal-2.jpg" },
+      { type: "image", url: "/images/projects/junk-removal1.jpeg" },
     ],
-    description: "Complete property cleanout and junk removal service"
-  },
-  {
-    id: 2,
-    title: "Construction Debris Removal",
-    category: "junk-removal",
-    media: [
-      { type: "image", url: "/images/projects/junk-removal-3.jpg" },
-    ],
+    description: "Complete junk removal and cleanout service"
   },
   // Bathroom Projects
   {
-    id: 3,
+    id: 2,
     title: "Modern Bathroom Remodel",
     category: "bathroom",
     media: [
-      { type: "image", url: "/images/projects/bathroom-1.jpg" },
-      { type: "image", url: "/images/projects/bathroom-2.jpg" },
-      { type: "image", url: "/images/projects/bathroom-3.jpg" },
+      { type: "image", url: "/images/projects/Bathroom1.jpeg" },
+      { type: "image", url: "/images/projects/Bathroom2.jpeg" },
+      { type: "image", url: "/images/projects/Bathroom3.jpeg" },
+      { type: "video", url: "/images/projects/Bathroom4.mp4" },
     ],
     description: "Complete bathroom renovation with modern fixtures"
   },
   {
-    id: 4,
-    title: "Luxury Master Bath",
+    id: 3,
+    title: "Luxury Bathroom Transformation",
     category: "bathroom",
     media: [
-      { type: "image", url: "/images/projects/bathroom-4.jpg" },
+      { type: "video", url: "/images/projects/Bathroom5.mp4" },
     ],
+    description: "High-end bathroom remodeling project"
   },
   // Kitchen Projects
   {
-    id: 5,
-    title: "Contemporary Kitchen Renovation",
+    id: 4,
+    title: "Kitchen Renovation",
     category: "kitchen",
     media: [
-      { type: "image", url: "/images/projects/kitchen-1.jpg" },
-      { type: "image", url: "/images/projects/kitchen-2.jpg" },
+      { type: "image", url: "/images/projects/Kitchen.jpeg" },
+      { type: "image", url: "/images/projects/Kitchen2.jpeg" },
     ],
-    description: "Full kitchen remodel with custom cabinets"
-  },
-  {
-    id: 6,
-    title: "Modern Kitchen Design",
-    category: "kitchen",
-    media: [
-      { type: "image", url: "/images/projects/kitchen-3.jpg" },
-    ],
+    description: "Custom kitchen remodel with quality finishes"
   },
   // Flooring Projects
   {
-    id: 7,
-    title: "Hardwood Floor Installation",
+    id: 5,
+    title: "Premium Flooring Installation",
     category: "flooring",
     media: [
-      { type: "image", url: "/images/projects/flooring-1.jpg" },
-      { type: "image", url: "/images/projects/flooring-2.jpg" },
+      { type: "image", url: "/images/projects/Flooring1.jpeg" },
+      { type: "image", url: "/images/projects/Flooring2.jpeg" },
+      { type: "image", url: "/images/projects/Flooring3.jpeg" },
+      { type: "image", url: "/images/projects/Flooring4.jpeg" },
     ],
-    description: "Premium hardwood flooring throughout the home"
-  },
-  {
-    id: 8,
-    title: "Tile Floor Design",
-    category: "flooring",
-    media: [
-      { type: "image", url: "/images/projects/flooring-3.jpg" },
-    ],
+    description: "High-quality flooring installation throughout the home"
   },
 ];
 
