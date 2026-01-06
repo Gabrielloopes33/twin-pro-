@@ -132,7 +132,6 @@ const Projects = () => {
                             onClick={() => setSelectedMedia({ url: media.url, type: "image" })}
                             unoptimized
                           />
-                          />
                           {project.media.length > 4 && index === 3 && (
                             <div className="absolute inset-0 bg-black/60 flex items-center justify-center cursor-pointer"
                               onClick={() => setSelectedMedia({ url: media.url, type: "image" })}>
