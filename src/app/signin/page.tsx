@@ -1,14 +1,52 @@
+"use client";
 import Link from "next/link";
-
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Sign In Page | Free Next.js Template for Startup and SaaS",
-  description: "This is Sign In Page for Startup Nextjs Template",
-  // other metadata
-};
+import { useState } from "react";
 
 const SigninPage = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      const response = await fetch("https://flow.agenciatouch.com.br/webhook/a583e69e-60d1-4a81-b804-4ce19fee9e66", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          ...formData,
+          formType: "signin",
+          timestamp: new Date().toISOString()
+        })
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({ email: "", password: "" });
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <>
       <section className="relative z-10 overflow-hidden pt-36 pb-16 md:pb-20 lg:pt-[180px] lg:pb-28">
@@ -80,7 +118,17 @@ const SigninPage = () => {
                   </p>
                   <span className="bg-body-color/50 hidden h-[1px] w-full max-w-[70px] sm:block"></span>
                 </div>
-                <form>
+                {submitStatus === "success" && (
+                  <div className="mb-6 rounded-xs bg-green-100 p-4 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                    Login enviado com sucesso!
+                  </div>
+                )}
+                {submitStatus === "error" && (
+                  <div className="mb-6 rounded-xs bg-red-100 p-4 text-red-700 dark:bg-red-900/30 dark:text-red-400">
+                    Erro ao fazer login. Tente novamente.
+                  </div>
+                )}
+                <form onSubmit={handleSubmit}>
                   <div className="mb-8">
                     <label
                       htmlFor="email"
@@ -92,6 +140,9 @@ const SigninPage = () => {
                       type="email"
                       name="email"
                       placeholder="Enter your Email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
                       className="border-stroke dark:text-body-color-dark dark:shadow-two text-body-color focus:border-primary dark:focus:border-primary w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden transition-all duration-300 dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
                     />
                   </div>
@@ -106,6 +157,9 @@ const SigninPage = () => {
                       type="password"
                       name="password"
                       placeholder="Enter your Password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      required
                       className="border-stroke dark:text-body-color-dark dark:shadow-two text-body-color focus:border-primary dark:focus:border-primary w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden transition-all duration-300 dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
                     />
                   </div>
@@ -153,8 +207,12 @@ const SigninPage = () => {
                     </div>
                   </div>
                   <div className="mb-6">
-                    <button className="shadow-submit dark:shadow-submit-dark bg-primary hover:bg-primary/90 flex w-full items-center justify-center rounded-xs px-9 py-4 text-base font-medium text-white duration-300">
-                      Sign in
+                    <button 
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="shadow-submit dark:shadow-submit-dark bg-primary hover:bg-primary/90 flex w-full items-center justify-center rounded-xs px-9 py-4 text-base font-medium text-white duration-300 disabled:opacity-50"
+                    >
+                      {isSubmitting ? "Entrando..." : "Sign in"}
                     </button>
                   </div>
                 </form>
