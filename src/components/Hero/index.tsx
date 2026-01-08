@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import * as React from "react";
+import Image from "next/image";
 import BlurText from "./BlurText";
 import ContactForm from "../Contact/ContactForm";
 
@@ -13,6 +14,19 @@ const Hero = () => {
         className="relative z-10 overflow-hidden w-full pb-16 pt-[120px] md:pb-[120px] md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px]"
       >
         <div className="container">
+          {/* Logo Section - Above Everything */}
+          <div className="w-full mb-8 md:mb-10 flex justify-center lg:justify-start px-4">
+            <div className="relative w-[200px] h-[200px] sm:w-[220px] sm:h-[220px] md:w-[240px] md:h-[240px] rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+              <Image
+                src="/images/logo/Twins-Pro-Logo.jpg"
+                alt="Twins Pro Solutions Logo"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
+          
           <div className="-mx-4 flex flex-wrap items-center">
             {/* Text Content - Left Side on Desktop */}
             <div className="w-full px-4 lg:w-1/2 mb-12 lg:mb-0">

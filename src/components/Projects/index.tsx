@@ -46,7 +46,7 @@ const projectsData: Project[] = [
     category: "kitchen",
     media: [
       { type: "image", url: "/images/projects/Kitchen.jpeg" },
-      { type: "image", url: "/images/projects/Kitchen2.jpeg" },
+      { type: "image", url: "/images/projects/Kitchen2.jpg" },
     ],
     description: "Custom kitchen remodel with quality finishes"
   },
