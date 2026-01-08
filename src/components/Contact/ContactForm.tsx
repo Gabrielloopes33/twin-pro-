@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useUserTracking } from "@/hooks/useUserTracking";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -10,12 +11,25 @@ const ContactForm = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  
+  // Hook de rastreamento
+  const { trackingData, trackFormClick, trackFieldInteraction, trackFormSubmit, getWebhookUrlWithUTM } = useUserTracking();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const fieldName = e.target.name;
+    
+    // Rastrear quando o usuário preenche um campo
+    trackFieldInteraction(fieldName);
+    
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [fieldName]: e.target.value
     });
+  };
+
+  const handleFormClick = () => {
+    // Rastrear quando o usuário clica no formulário
+    trackFormClick();
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -23,27 +37,56 @@ const ContactForm = () => {
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
+    // Rastrear envio do formulário
+    trackFormSubmit();
+
+    const baseUrl = "https://flow.agenciatouch.com.br/webhook/a583e69e-60d1-4a81-b804-4ce19fee9e66";
+    const webhookUrlWithUTM = getWebhookUrlWithUTM(baseUrl);
+
+    const payloadData = {
+      ...formData,
+      formType: "contact",
+      timestamp: new Date().toISOString(),
+      // Dados de rastreamento
+      tracking: {
+        utm_source: trackingData.utm_source,
+        utm_medium: trackingData.utm_medium,
+        utm_campaign: trackingData.utm_campaign,
+        utm_content: trackingData.utm_content,
+        visited_sections: trackingData.visited_sections,
+        form_interactions: trackingData.form_interactions,
+        first_interaction: trackingData.first_interaction,
+        last_interaction: trackingData.last_interaction,
+        user_journey: trackingData.visited_sections.join(' → '),
+      }
+    };
+
+    // Log para debug (pode remover em produção)
+    console.log('📊 Dados de Rastreamento:', {
+      url: webhookUrlWithUTM,
+      payload: payloadData
+    });
+
     try {
-      const response = await fetch("https://flow.agenciatouch.com.br/webhook/a583e69e-60d1-4a81-b804-4ce19fee9e66", {
+      const response = await fetch(webhookUrlWithUTM, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-          ...formData,
-          formType: "contact",
-          timestamp: new Date().toISOString()
-        })
+        body: JSON.stringify(payloadData)
       });
 
       if (response.ok) {
         setSubmitStatus("success");
         setFormData({ name: "", email: "", phone: "", message: "" });
+        console.log('✅ Formulário enviado com sucesso!');
       } else {
         setSubmitStatus("error");
+        console.error('❌ Erro ao enviar formulário:', response.status);
       }
     } catch (error) {
       setSubmitStatus("error");
+      console.error('❌ Erro ao enviar formulário:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -53,6 +96,7 @@ const ContactForm = () => {
     <div
       className="rounded-xs bg-white px-4 py-8 shadow-three sm:px-8 sm:py-11 md:p-[55px]"
       data-wow-delay=".15s"
+      onClick={handleFormClick}
     >
       <h2 className="mb-3 text-xl font-bold text-black sm:text-2xl md:text-3xl">
         Need Help?

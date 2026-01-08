@@ -82,7 +82,7 @@ const Projects = () => {
     : projectsData.filter(project => project.category === activeCategory);
 
   return (
-    <section className="py-16 md:py-20 lg:py-28 bg-gray-light relative overflow-hidden">
+    <section id="projects" className="py-16 md:py-20 lg:py-28 bg-gray-light relative overflow-hidden">
       <div className="container">
         <SectionTitle
           title="Our Completed Work"

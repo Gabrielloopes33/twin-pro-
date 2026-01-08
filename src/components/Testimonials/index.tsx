@@ -115,7 +115,7 @@ const Testimonials = () => {
   const duplicatedTestimonials = [...testimonialData, ...testimonialData];
 
   return (
-    <section className="bg-gray-light relative z-10 py-16 md:py-20 lg:py-28">
+    <section id="testimonials" className="bg-gray-light relative z-10 py-16 md:py-20 lg:py-28">
       <div className="container">
         <SectionTitle
           title="What Our Clients Says"

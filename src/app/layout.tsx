@@ -5,6 +5,7 @@ import * as React from "react";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
+import { TrackingDebugger } from "@/components/TrackingDebugger";
 import { Inter } from "next/font/google";
 import "../styles/index.css";
 
@@ -45,6 +46,8 @@ export default function RootLayout({
           {children}
           
           <ScrollToTop />
+          {/* Debug Mode - Clique no botão 🎯 ou pressione Alt+Shift+D */}
+          {process.env.NODE_ENV === 'development' && <TrackingDebugger />}
         </Providers>
       </body>
     </html>
