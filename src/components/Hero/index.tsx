@@ -23,6 +23,8 @@ const Hero = () => {
                 fill
                 className="object-cover"
                 priority
+                unoptimized
+                sizes="(max-width: 640px) 200px, (max-width: 768px) 220px, 240px"
               />
             </div>
           </div>

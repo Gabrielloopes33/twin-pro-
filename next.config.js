@@ -11,6 +11,7 @@ const nextConfig = {
     ],
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60,
+    unoptimized: process.env.NETLIFY === 'true', // Desabilitar otimização no Netlify
   },
   
   // Compiler optimizations
@@ -20,7 +21,7 @@ const nextConfig = {
   
   // Netlify compatibility
   trailingSlash: false,
-  output: 'standalone',
+  // Remover output standalone para Netlify
   
   // Bundle optimization
   webpack: (config, { dev, isServer }) => {
