@@ -24,13 +24,14 @@ export default function RootLayout({
       */}
       <head>
         {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10833965670"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-LW9ER34826"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
+              gtag('config', 'G-LW9ER34826');
               gtag('config', 'AW-10833965670');
             `,
           }}
